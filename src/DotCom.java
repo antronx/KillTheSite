@@ -1,30 +1,34 @@
+import java.util.ArrayList;
+
 public class DotCom {
 
-    private int[] locationCells;
-    private int numberOfHits = 0;
+    /**
+     * Updated method. Arraylist is used
+     */
+    private ArrayList<String> boat;
 
-    void setLocationCells(int[] locationCells) {
-        this.locationCells = locationCells;
+    void setLocationCells(ArrayList<String> locationCells) {
+        this.boat = locationCells;
     }
 
     private boolean isAlive = true;
 
-    public boolean getIsAlive(){
-        return this.isAlive;
+    public boolean getIsAlive() {
+        return !(this.boat.isEmpty());
     }
 
+
     String checkTheHit(String hit) {
-        String hitResult = "Мимо";
-        int hitInt = Integer.parseInt(hit);
-        for (int cell : locationCells) {
-            if (hitInt == cell) {
-                numberOfHits++;
-                if (numberOfHits == locationCells.length) {
-                    hitResult = "Сайт потоплен";
-                    isAlive = false;
-                } else hitResult = "Попал";
-            }
+        int index = boat.indexOf(hit);
+        String result = "Мимо";
+        if (index >= 0) {
+            boat.remove(index);
+            if (boat.isEmpty()) {
+                result = "Корабль потоплен";
+            } else result = "Попал";
         }
-        return hitResult;
+        return result;
     }
+
+
 }

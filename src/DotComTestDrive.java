@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -7,7 +8,10 @@ public class DotComTestDrive {
         DotCom dotCom = new DotCom();
         boolean siteState = true;
         int random = (int) (Math.random() * 5);
-        int[] siteArray = {random, random + 1, random + 2};
+        ArrayList<String> siteArray = new ArrayList<>();
+        siteArray.add(String.valueOf(random));
+        siteArray.add(String.valueOf(++random));
+        siteArray.add(String.valueOf(++random));
         dotCom.setLocationCells(siteArray);
 
         System.out.println("Введите число от 0 до 6");
