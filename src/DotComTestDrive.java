@@ -1,28 +1,25 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class DotComTestDrive {
     public static void main(String[] args) {
+        int numberOfGuesses = 0;
         DotCom dotCom = new DotCom();
-        int[] locations = {2,3,4};
+        boolean siteState = true;
+        int random = (int) (Math.random() * 5);
+        int[] siteArray = {random, random + 1, random + 2};
+        dotCom.setLocationCells(siteArray);
 
-        dotCom.setLocationCells(locations);
+        System.out.println("Введите число от 0 до 6");
 
-        String userGuess1 = "1";
-        String result1 = dotCom.checkTheHit(userGuess1);
-        if (result1.equals("Мимо")){
-            System.out.println("test 1 is passed. User missed the shot");
-        } else System.out.println("test 1 failed");
+        while (siteState) {
+            Scanner scanner = new Scanner(System.in);
+            String hit = scanner.nextLine();
+            System.out.println(dotCom.checkTheHit(hit));
+            numberOfGuesses++;
+            siteState = dotCom.getIsAlive();
+        }
+        System.out.println("Вы потопили сайт с " + numberOfGuesses + " попытки. Игра окончена.");
 
-        String userGuess2 = "2";
-        String result2 = dotCom.checkTheHit(userGuess2);
-        if (result2.equals("Попал")){
-            System.out.println("test 2 is passed. The hit was successful");
-        } else System.out.println("test 2 failed");
-
-        String userGuess3 = "3";
-        String userGuess4 = "4";
-        dotCom.checkTheHit(userGuess3);
-        String result3 = dotCom.checkTheHit(userGuess4);
-        if (result3.equals("Сайт потоплен")){
-            System.out.println("test 3 passed. Site was deleted completely");
-        } else System.out.println("test 3 failed");
     }
 }

@@ -7,6 +7,12 @@ public class DotCom {
         this.locationCells = locationCells;
     }
 
+    private boolean isAlive = true;
+
+    public boolean getIsAlive(){
+        return this.isAlive;
+    }
+
     String checkTheHit(String hit) {
         String hitResult = "Мимо";
         int hitInt = Integer.parseInt(hit);
@@ -15,6 +21,7 @@ public class DotCom {
                 numberOfHits++;
                 if (numberOfHits == locationCells.length) {
                     hitResult = "Сайт потоплен";
+                    isAlive = false;
                 } else hitResult = "Попал";
             }
         }
